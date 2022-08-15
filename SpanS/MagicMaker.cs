@@ -4,13 +4,20 @@
     {
         public static string StringNormalMagic(string input)
         {
-            return string.Empty;
+            return input.ToUpper();
         }
 
 
         public static ReadOnlySpan<char> StringSpanMagic(ReadOnlySpan<char> input)
         {
-            return new ReadOnlySpan<char>(input.ToArray());
+            var output = new Span<char>(input.ToArray());
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = char.ToUpper(input[i]);
+            }
+
+            return output;
         }
     }
 }
